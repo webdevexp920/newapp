@@ -1,21 +1,24 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar/NavBar'
 import fetch from 'isomorphic-unfetch';
 import { className } from 'postcss-selector-parser';
-import LayoutWrapper from '../components/LayoutWrapper';
-import LayoutWrapperEntry from '../components/LayoutWrapperEntry';
-import Header from '../components/Header';
-import Container from '../components/Container';
-import Logo from '../components/Logo';
-import HeaderArea from '../components/HeaderArea';
+
+import LayoutWrapper from '../components/LayoutWrapper/LayoutWrapper';
+import LayoutWrapperEntry from '../components/LayoutWrapperEntry/LayoutWrapperEntry';
+import Header from '../components/Header/Header';
+import Container from '../components/Container/Container';
+import Logo from '../components/Logo/Logo';
+import { HeaderArea } from '../components';
 import Link from 'next/link';
-import SlideSet from '../components/SlideSet';
-import Pagination from '../components/Pagination';
-import SearchBlock from '../components/SearchBlock';
-import ObjectList from '../components/ObjectList';
-import Footer from '../components/Footer';
-import Subscription from '../components/Subscription';
-import Nav from '../components/NavItem';
+import SlideSet from '../components/SlideSet/SlideSet';
+import Pagination from '../components/Pagination/Pagination';
+import SearchBlock from '../components/SearchBlock/SearchBlock';
+import ObjectList from '../components/ObjectList/ObjectList';
+import Footer from '../components/Footer/Footer';
+import Subscription from '../components/Subscription/Subscription';
+import { Nav } from '../components';
+
+import linksData from '../support/fake/LinksData';
 
 const Home = props => {
 
@@ -38,19 +41,20 @@ const Home = props => {
           <Header>
             <Container>
               {/* header control */}
-              <NavBar link={linkHeaderControl} />
+              <NavBar className="header-control" link={linkHeaderControl} />
               {/* logo of the page */}
-              <Logo link={linkLogo} />
-              <HeaderArea>
+              <Logo className="logo" link={linkLogo} />
+              <HeaderArea className="header-area">
                 {/* navigation */}
-                <Nav>
+                <Nav className="nav">
                   {/* navigation opener */}
-                  <Link>
-                    <a href="#" class="nav-opener"><span>Menu</span></a>
-                  </Link>
+                  <LinkItem href="#" className="nav-opener">
+                    <span>Menu</span>
+                  </LinkItem>
+
                   <div class="nav-drop">
                     {/* navigation primary */}
-                    <NavBar className={css.nav - primary} links={} />
+                    <NavBar links={} />
                     {/* switcher language */}
                     <div class="switcher-language">
                       <span class="title">Eng <i class="icon-arrow-down"></i></span>
@@ -209,36 +213,12 @@ const Home = props => {
 }
 
 Home.getInitialProps = async function ({ req }) {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
+  // const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
+  // const data = await res.json();
 
-  console.log(`Show data fetched. Count: ${data.length}`);
-
-  const linkHeaderControl = {
-    search: {
-      className: '',
-      href: '',
-      label: '',
-    },
-    search: {
-      className: '',
-      href: '',
-      label: '',
-    },
-  };
-
-  const linkLogo = {
-    className: 'logo',
-    href: '',
-  };
-
-  const links = {
-    linkHeaderControl,
-    linkLogo,
-  }
-
+  // console.log(`Show data fetched. Count: ${data.length}`);
   return {
-    links,
+    links: linksData,
   };
 }
 
