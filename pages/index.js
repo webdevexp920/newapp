@@ -3,22 +3,27 @@ import NavBar from '../components/NavBar/NavBar'
 import fetch from 'isomorphic-unfetch';
 import { className } from 'postcss-selector-parser';
 
-import LayoutWrapper from '../components/LayoutWrapper/LayoutWrapper';
-import LayoutWrapperEntry from '../components/LayoutWrapperEntry/LayoutWrapperEntry';
-import Header from '../components/Header/Header';
-import Container from '../components/Container/Container';
-import Logo from '../components/Logo/Logo';
-import { HeaderArea } from '../components';
-import Link from 'next/link';
-import SlideSet from '../components/SlideSet/SlideSet';
-import Pagination from '../components/Pagination/Pagination';
-import SearchBlock from '../components/SearchBlock/SearchBlock';
-import ObjectList from '../components/ObjectList/ObjectList';
-import Footer from '../components/Footer/Footer';
-import Subscription from '../components/Subscription/Subscription';
-import { Nav } from '../components';
+import {
+  Container,
+  Footer,
+  Header,
+  HeaderArea,
+  LayoutWrapper,
+  LayoutWrapperEntry,
+  LinkItem,
+  Logo,
+  Nav,
+  Pagination,
+  SearchBlock,
+  SlideSet,
+  Subscription,
+} from '../components';
 
-import linksData from '../support/fake/LinksData';
+import {
+  linksData,
+  PaginationData,
+} from '../support';
+
 
 const Home = props => {
 
@@ -29,6 +34,9 @@ const Home = props => {
   const {
     linkHeaderControl,
     linkLogo,
+    linkLang,
+    linkAuth,
+    linkInvest,
   } = links;
 
   return (
@@ -44,6 +52,7 @@ const Home = props => {
               <NavBar className="header-control" link={linkHeaderControl} />
               {/* logo of the page */}
               <Logo className="logo" link={linkLogo} />
+
               <HeaderArea className="header-area">
                 {/* navigation */}
                 <Nav className="nav">
@@ -219,6 +228,7 @@ Home.getInitialProps = async function ({ req }) {
   // console.log(`Show data fetched. Count: ${data.length}`);
   return {
     links: linksData,
+    Pagination: PaginationData,
   };
 }
 
