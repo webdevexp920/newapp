@@ -207,7 +207,7 @@ const ModalCompare = props => (
                   </div>
                   <dl>
                     <dt>Expires</dt>
-                    <dd>Fully Invested</dd>
+                    <dd>Fully Inv ested</dd>
                     <dt>Collateral value</dt>
                     <dd>€190,000</dd>
                     <dt>Target</dt>
